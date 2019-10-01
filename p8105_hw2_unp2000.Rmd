@@ -1,0 +1,13 @@
+---
+title: "p8105_hw2_unp2000"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx")
+
+```
