@@ -2,12 +2,14 @@
 title: "p8105_hw2_unp2000"
 output: github_document
 ---
-
+#Problem 1: 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 library(tidyverse)
-library(readxl)
-problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx")
 
+library(readxl)
+problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel")
+
+problem1_data = janitor::clean_names(problem1_data)
+names(problem1_data)
 ```
