@@ -3,8 +3,8 @@ title: "p8105_hw2_unp2000"
 output: github_document
 ---
 #Problem 1: 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+##Mr.Trashcan
+```{r}
 library(tidyverse)
 
 library(readxl)
@@ -14,4 +14,30 @@ problem1_data = janitor::clean_names(problem1_data)
 names(problem1_data)
 
 na.omit(problem1_data)
+```
+
+#2018 precipitation 
+```{r}
+precip1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2018 Precipitation", range = "A2:B14")
+
+precip1_data = janitor::clean_names(precip1_data)
+names(precip1_data)
+
+na.omit(precip1_data)
+
+mutate(precip1_data, year = 2018)
+
+```
+
+#2017 precipitation
+```{r}
+precip2_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2017 Precipitation", range = "A2:B14")
+
+precip2_data = janitor::clean_names(precip2_data)
+names(precip2_data)
+
+na.omit(precip2_data)
+
+mutate(precip2_data, year = 2017)
+
 ```
