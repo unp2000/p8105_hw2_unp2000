@@ -8,8 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 
 library(readxl)
-problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel")
+problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel", range = "A2:N338")
 
 problem1_data = janitor::clean_names(problem1_data)
 names(problem1_data)
+
 ```
