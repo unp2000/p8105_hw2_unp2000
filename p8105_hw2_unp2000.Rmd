@@ -112,10 +112,10 @@ unemploy_data=
 # Joining SNP into POLS 
 ```{r}
 snpandpols_data = 
-  full_join(snp_data, pols_data)
+  full_join(pols_data, snp_data) 
 ```
 
-#Joining SNPANDPOLS into Unemploy 
+# Joining SNPANDPOLS into Unemploy 
 ```{r}
 total_data = 
   inner_join(snpandpols_data, unemploy_data, by = "year")
