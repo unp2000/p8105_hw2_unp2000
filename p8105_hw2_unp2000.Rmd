@@ -97,5 +97,28 @@ snp_data=
     arrange(year, month)
 ```
 
+# Unemployment Data 
+```{r}
+unemploy_data= 
+    read_csv("./data/unemployment.csv") %>%
+    janitor::clean_names () %>%
+  pivot_longer(
+    jan:dec,
+    names_to = "month", 
+    values_to = "unemployment rate"
+    )
+```
+
+# Joining SNP into POLS 
+```{r}
+snpandpols_data = 
+  full_join(snp_data, pols_data)
+```
+
+#Joining SNPANDPOLS into Unemploy 
+```{r}
+total_data = 
+  inner_join(snpandpols_data, unemploy_data, by = "year")
+```
 
 
