@@ -39,3 +39,13 @@ precip2_data =
     )
 
 ```
+# Combining Datasets
+```{r}
+precip_data =
+    bind_rows(precip2_data, precip1_data) %>%
+  mutate(
+    month = as.numeric(month),
+    month = month.name[month]
+    )
+``` 
+
