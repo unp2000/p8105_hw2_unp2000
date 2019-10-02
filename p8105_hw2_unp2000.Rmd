@@ -2,42 +2,40 @@
 title: "p8105_hw2_unp2000"
 output: github_document
 ---
-#Problem 1: 
-##Mr.Trashcan
+# Problem 1: 
+## Mr.Trashcan
 ```{r}
 library(tidyverse)
 
 library(readxl)
-problem1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel", range = "A2:N338")
-
-problem1_data = janitor::clean_names(problem1_data)
-names(problem1_data)
-
-na.omit(problem1_data)
+problem1_data = 
+  read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx", 
+  sheet = 1, range = "A2:N338") %>%
+  janitor::clean_names() %>%
+  drop_na(dumpster) %>%
+  mutate(sport_balls = as.integer(sports_balls)) %>%
+  select(-sports_balls)
 ```
 
-#2018 precipitation 
+# 2018 precipitation 
 ```{r}
-precip1_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2018 Precipitation", range = "A2:B14")
-
-precip1_data = janitor::clean_names(precip1_data)
-names(precip1_data)
-
-na.omit(precip1_data)
-
-mutate(precip1_data, year = 2018)
+precip1_data = 
+  read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+  sheet = 5, range = "A2:B14") %>%
+  janitor::clean_names() %>%
+  mutate(
+      year = 2018
+  )
 
 ```
-
-#2017 precipitation
+# 2017 precipitation
 ```{r}
-precip2_data = read_excel("./data/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2017 Precipitation", range = "A2:B14")
-
-precip2_data = janitor::clean_names(precip2_data)
-names(precip2_data)
-
-na.omit(precip2_data)
-
-mutate(precip2_data, year = 2017)
+precip2_data = 
+  read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx", 
+  sheet = 6, range = "A2:B14") %>%
+  janitor::clean_names() %>%
+  mutate(
+    year = 2017
+    )
 
 ```
