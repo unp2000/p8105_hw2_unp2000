@@ -52,7 +52,7 @@ precip_data =
 ## Paragraph about this 
 Be sure to note the number of observations in both resulting datasets, and give examples of key variables. For available data, what was the total precipitation in 2018? What was the median number of sports balls in a dumpster in 2017?
 
-`r sum(pull(precip_data, total))`
+The total amount of precipitation in the combined data set is `r sum(pull(precip_data, total))`
 `r sum(pull(precip2_data, total))`
 `r sum(pull(precip1_data, total))`
 `r median(pull(precip_data,total))`
@@ -65,6 +65,34 @@ Be sure to note the number of observations in both resulting datasets, and give 
 
 `r median(pull(problem1_data,sport_balls))`
 
+# Problem 2 
+# Pols Data 
+```{r}
+pols_data= 
+  read_csv("./data/pols-month.csv") %>%
+  janitor::clean_names () %>%
+  separate(mon, c("year", "month", "day"), sep = "-") %>%
+  select(-"day") %>%
+  mutate(
+    month = as.numeric(month),
+    month = month.name[month]
+    ) 
+```
+
+# SNP Data
+```{r}
+snp_data= 
+    read_csv("./data/snp.csv") %>%
+    janitor::clean_names () %>%
+    separate(date, c("month", "day", "year"), sep = "/") %>%
+    select(year, month, -day, close) %>%
+    mutate(
+      year = as.numeric(year),
+    month = as.numeric(month),
+    month = month.name[month]
+    ) %>%
+    arrange(year, month)
+```
 
 
 
