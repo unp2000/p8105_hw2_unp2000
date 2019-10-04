@@ -76,7 +76,8 @@ pols_data=
   mutate(
     year = as.numeric(year), 
     month = as.numeric(month),
-    month = month.name[month]
+    month = month.abb[month],
+     month = str_to_lower(month)
     ) %>%
   select(-prez_gop, -prez_dem, -day)
   
@@ -92,7 +93,8 @@ snp_data=
     mutate(
       year = as.numeric(year),
     month = as.numeric(month),
-    month = month.name[month]
+    month = month.abb[month],
+    month = str_to_lower(month)
     ) %>%
     arrange(year, month)
 ```
