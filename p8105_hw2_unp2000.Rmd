@@ -112,13 +112,23 @@ unemploy_data=
 # Joining SNP into POLS 
 ```{r}
 snpandpols_data = 
-  full_join(pols_data, snp_data) 
+  left_join(pols_data, snp_data, by = c("year", "month"))
 ```
 
 # Joining SNPANDPOLS into Unemploy 
 ```{r}
 total_data = 
-  inner_join(snpandpols_data, unemploy_data, by = "year")
+  left_join(snpandpols_data, unemploy_data, by= c("year", "month"))
+```
+# Baby Data 
+```{r}
+baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
+  distinct() %>%
+  janitor::clean_names() %>%
+  mutate(ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER", "BLACK NON HISP" =    "BLACK NON HISPANIC", "WHITE NON HISP" = "WHITE NON HISPANIC")) %>%
+  mutate(ethnicity = str_to_lower(ethnicity), gender = str_to_lower(gender), childs_first_name =  
+  str_to_lower(childs_first_name))
+```
 ```
 
-
+```
