@@ -17,7 +17,7 @@ problem1_data =
   select(-sports_balls)
 ```
 
-# 2018 precipitation 
+## 2018 precipitation:
 ```{r}
 precip1_data = 
   read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
@@ -28,7 +28,7 @@ precip1_data =
   )
 
 ```
-# 2017 precipitation
+## 2017 precipitation
 ```{r}
 precip2_data = 
   read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx", 
@@ -39,7 +39,7 @@ precip2_data =
     )
 
 ```
-# Combining Datasets
+## Combining Datasets
 ```{r}
 precip_data =
     bind_rows(precip2_data, precip1_data) %>%
@@ -49,12 +49,10 @@ precip_data =
     )
 ``` 
 
-## Paragraph about this 
-Be sure to note the number of observations in both resulting datasets, and give examples of key variables. For available data, what was the total precipitation in 2018? What was the median number of sports balls in a dumpster in 2017?
-
+## Paragraph about data:
 The Mr. Trash Wheel is a water vessel that removes trash from the Inner Harbor in Baltimore, MD from May 2014 to August 2018. Some key variables in the Mr. Trash Wheel dataset include volume, weight, and types of trash. The data set spans from The average number of cigarette butts collected were `r mean(pull(problem1_data, cigarette_butts))` is 36016.08. The median number of sports balls in a dumpster in 2017 is `r median(pull(problem1_data,sport_balls))`, while the total number of sports balls in a dumpseter in 2017 is `r sum(pull(problem1_data,sport_balls))`. 
 
-Some key variables in the precipitation data set are month, year, and total precipitation (in inches). The combined data set (2017 and 2018) encompasses measurements from 24 months in 2017 and 2018. The total number of rows in the combined data set (2017 and 2018) is `r nrow(precip_data)`. The total number of columns in the combined data set (2017 and 2018) is `r ncol(precip_data)`. The total amount of precipitation in the combined data set (2017 and 2018) is `r sum(pull(precip_data, total))` inches. The median amount of precipitation in the combined data set (2017 and 2018) is `r median(pull(precip_data,total))` inches. More specifically, in 2017, the total amount of precipitation was `r sum(pull(precip2_data, total))` inches with a median amount of precipitation was `r median(pull(precip2_data,total))` inches. In 2018, the total amount of precipitation was `r sum(pull(precip1_data, total))` inches while the median amount of precipitation was The median amount of precipitation in 2018 was `r median(pull(precip1_data,total))` inches. 
+Some key variables in the precipitation data set are month, year, and total precipitation (in inches). The combined data set (2017 and 2018) encompasses measurements from 24 months in 2017 and 2018. The total number of rows in the combined data set (2017 and 2018) is `r nrow(precip_data)`. The total number of columns in the combined data set (2017 and 2018) is `r ncol(precip_data)`. The total amount of precipitation in the combined data set (2017 and 2018) is `r sum(pull(precip_data, total))` inches, while the average precipitation in the combined data set (2017 and 2018) is `r mean(pull(precip_data, total))` inches. The median amount of precipitation in the combined data set (2017 and 2018) is `r median(pull(precip_data,total))` inches. More specifically, in 2017, the total amount of precipitation was `r sum(pull(precip2_data, total))` inches with a median amount of precipitation was `r median(pull(precip2_data,total))` inches. In 2018, the total amount of precipitation was `r sum(pull(precip1_data, total))` inches while the median amount of precipitation was The median amount of precipitation in 2018 was `r median(pull(precip1_data,total))` inches. 
 
 # Problem 2: 
 ## Pols Data 
@@ -74,7 +72,7 @@ pols_data=
   
 ```
 
-# SNP Data
+## SNP Data
 ```{r}
 snp_data= 
     read_csv("./data/snp.csv") %>%
@@ -90,7 +88,7 @@ snp_data=
     arrange(year, month)
 ```
 
-# Unemployment Data 
+## Unemployment Data 
 ```{r}
 unemploy_data= 
     read_csv("./data/unemployment.csv") %>%
@@ -102,19 +100,29 @@ unemploy_data=
     )
 ```
 
-# Joining SNP into POLS 
+## Joining SNP into POLS 
 ```{r}
 snpandpols_data = 
   left_join(pols_data, snp_data, by = c("year", "month"))
 ```
 
-# Joining SNPANDPOLS into Unemploy 
+## Joining SNPANDPOLS into Unemploy 
 ```{r}
 total_data = 
   left_join(snpandpols_data, unemploy_data, by= c("year", "month"))
 ```
 
-# PROBLEM 3: 
+##Paragraphs: 
+
+The pols data includes data variables of year, month, and number of politicians (presidents, governors, representatives, and setnators) who are GOP or Democratic at any given time totaling for 9 variables. This data set included `r nrow(pols_data)` rows and `r ncol(pols_data)` columns resulting to 822 observations. This data set ranges from Jan 1947 to June 2015. 
+
+The snp data includes data variables of the date of observation and the closing values of the Standard&Poors stock index on the associated date. This data set included `r nrow(snp_data)` rows and `r ncol(snp_data)` columns resulting to 787 observations. This data set ranges from April 1950 to May 2015. 
+
+The unemployment data includes 3 variables with the year, month, and percentage unemployed in the associated year. This data set included `r nrow(snp_data)` rows and `r ncol(snp_data)` columns resulting to 68 observations. This data set ranges from Jan 1948 to June 2015. 
+
+#Problem 3:
+
+## BABY DATA: 
 ```{r}
 pop_baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
   distinct() %>%
