@@ -65,7 +65,7 @@ The total amount of precipitation in the combined data set is `r sum(pull(precip
 
 `r median(pull(problem1_data,sport_balls))`
 
-# Problem 2 
+# Problem 2: 
 # Pols Data 
 ```{r}
 pols_data= 
@@ -122,9 +122,10 @@ snpandpols_data =
 total_data = 
   left_join(snpandpols_data, unemploy_data, by= c("year", "month"))
 ```
-# Baby Data 
+
+# PROBLEM 3: 
 ```{r}
-baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
+pop_baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
   distinct() %>%
   janitor::clean_names() %>%
   mutate(ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER", "BLACK NON HISP" =    "BLACK NON HISPANIC", "WHITE NON HISP" = "WHITE NON HISPANIC")) %>%
@@ -133,12 +134,25 @@ baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
 ```
 
 ```{r}
-baby_names_data %>%
-        filter(childs_first_name == "olivia") %>%
-        select(-count) %>%
-        pivot_wider(names_from = year_of_birth, 
-                    values_from = rank) %>%
-      knitr::kable()
+pop_baby_names_data %>%
+  filter(childs_first_name == "olivia") %>%
+  select(-count) %>%
+  pivot_wider(names_from = year_of_birth, values_from = rank) %>%
+  knitr::kable()
+```
+
+```{r}
+pop_baby_names_data %>%
+  filter(gender == "male", rank == 1) %>%
+  select(-count) %>%
+  pivot_wider(names_from = year_of_birth, values_from = rank) %>%
+  knitr::kable()
+```
+
+```{r}
+baby_plot= filter(pop_baby_names_data,  ethnicity == "white non hispanic", year_of_birth == "2016", gender == "male")
+
+ggplot(baby_plot, aes(x = rank, y = count)) + geom_point()
 ```
 
 
