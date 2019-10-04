@@ -131,6 +131,15 @@ baby_names_data = read_csv("./data/Popular_Baby_Names.csv") %>%
   mutate(ethnicity = str_to_lower(ethnicity), gender = str_to_lower(gender), childs_first_name =  
   str_to_lower(childs_first_name))
 ```
+
+```{r}
+baby_names_data %>%
+        filter(childs_first_name == "olivia") %>%
+        select(-count) %>%
+        pivot_wider(names_from = year_of_birth, 
+                    values_from = rank) %>%
+      knitr::kable()
 ```
 
-```
+
+
