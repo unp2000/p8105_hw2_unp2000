@@ -50,9 +50,15 @@ precip_data =
 ``` 
 
 ## Paragraph about data:
-The Mr. Trash Wheel is a water vessel that removes trash from the Inner Harbor in Baltimore, MD from May 2014 to August 2018. Some key variables in the Mr. Trash Wheel dataset include volume, weight, and types of trash. The data set spans from The average number of cigarette butts collected were `r mean(pull(problem1_data, cigarette_butts))` is 36016.08. The median number of sports balls in a dumpster in 2017 is `r median(pull(problem1_data,sport_balls))`, while the total number of sports balls in a dumpseter in 2017 is `r sum(pull(problem1_data,sport_balls))`. 
+The Mr. Trash Wheel is a water vessel that removes trash from the Inner Harbor in Baltimore, MD from May 2014 to August 2018. Some key variables in the Mr. Trash Wheel dataset include volume, weight, and types of trash. The data set spans from The average number of cigarette butts collected were `r mean(pull(problem1_data, cigarette_butts))` is 36016.08. The median number of sports balls in a dumpster in 2017 is `r median(pull(problem1_data,sport_balls))`, while the median number of sports balls in a dumpseter in 2017 is 8 balls (see code below). 
 
-Some key variables in the precipitation data set are month, year, and total precipitation (in inches). The combined data set (2017 and 2018) encompasses measurements from 24 months in 2017 and 2018. The total number of rows in the combined data set (2017 and 2018) is `r nrow(precip_data)`. The total number of columns in the combined data set (2017 and 2018) is `r ncol(precip_data)`. The total amount of precipitation in the combined data set (2017 and 2018) is `r sum(pull(precip_data, total))` inches, while the average precipitation in the combined data set (2017 and 2018) is `r mean(pull(precip_data, total))` inches. The median amount of precipitation in the combined data set (2017 and 2018) is `r median(pull(precip_data,total))` inches. More specifically, in 2017, the total amount of precipitation was `r sum(pull(precip2_data, total))` inches with a median amount of precipitation was `r median(pull(precip2_data,total))` inches. In 2018, the total amount of precipitation was `r sum(pull(precip1_data, total))` inches while the median amount of precipitation was The median amount of precipitation in 2018 was `r median(pull(precip1_data,total))` inches. 
+```{r}
+problem1_data  %>% 
+  filter(year == 2017) %>% 
+  summarise(median_balls = median(sport_balls))
+```
+
+Some key variables in the precipitation data set are month, year, and total precipitation (in inches). The combined data set (2017 and 2018) encompasses measurements from 24 months in 2017 and 2018. The total number of rows in the combined data set (2017 and 2018) is `r nrow(precip_data)`. The total number of columns in the combined data set (2017 and 2018) is `r ncol(precip_data)`. The total amount of precipitation in the combined data set (2017 and 2018) is `r sum(pull(precip_data, total))` inches, while the average precipitation in the combined data set (2017 and 2018) is `r mean(pull(precip_data, total))` inches. The median amount of precipitation in the combined data set (2017 and 2018) is `r median(pull(precip_data,total))` inches. More specifically, in 2017, the total amount of precipitation was `r sum(pull(precip2_data, total))` inches with a median amount of precipitation was `r median(pull(precip2_data,total))` inches. In 2018, the total amount of precipitation was `r sum(pull(precip1_data, total))` inches while the median amount of precipitation was the median amount of precipitation in 2018 was `r median(pull(precip1_data,total))` inches. 
 
 # Problem 2: 
 ## Pols Data 
@@ -120,7 +126,7 @@ The snp data includes data variables of the date of observation and the closing 
 
 The unemployment data includes 3 variables with the year, month, and percentage unemployed in the associated year. This data set included `r nrow(snp_data)` rows and `r ncol(snp_data)` columns resulting to 68 observations. This data set ranges from Jan 1948 to June 2015. 
 
-#Problem 3:
+# Problem 3:
 
 ## BABY DATA: 
 ```{r}
